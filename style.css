@@ -333,6 +333,30 @@ html:-moz-full-screen body {
     text-transform: uppercase;
 }
 
+#ra2web-root .login-debug-ui {
+    margin: 12px 0;
+}
+
+#ra2web-root .login-debug-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+#ra2web-root .login-debug-ui .login-debug-button {
+    appearance: none;
+    border: 1px red solid;
+    background-color: #480000;
+    color: yellow;
+    padding: 4px 8px 3px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#ra2web-root .login-debug-ui .login-debug-button:hover:not(:disabled) {
+    background-color: orangered;
+}
+
 #ra2web-root .login-wrapper .news {
     box-sizing: border-box;
     height: 200px;
@@ -377,16 +401,6 @@ html:-moz-full-screen body {
 
 #ra2web-root .prompt-box .field input[type="text"] {
     margin-top: 5px;
-}
-
-#ra2web-root .options-inline-button {
-    width: 126px;
-    height: 25px;
-    border: none;
-    outline: none;
-    background-image: var(--res-mnbttn);
-    background-position: 0 0;
-    display: block;
 }
 
 #ra2web-root .dialog-button {
@@ -996,12 +1010,6 @@ input[type="range"]:focus {
     color: cyan;
 }
 
-#ra2web-root .players-list .player.disabled {
-    color: #888;
-    opacity: 0.75;
-    cursor: default;
-}
-
 #ra2web-root .players-list .player .channel-op-indicator {
     display: inline-block;
     vertical-align: middle;
@@ -1013,6 +1021,49 @@ input[type="range"]:focus {
     display: inline-block;
     vertical-align: top;
     margin-right: 3px;
+}
+
+#ra2web-root .players-list .player {
+    position: relative;
+}
+
+#ra2web-root .players-list .player.menu-open {
+    overflow: visible;
+}
+
+#ra2web-root .players-list .player .player-name-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#ra2web-root .players-list .player .player-menu-icon {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: 4px;
+}
+
+#ra2web-root .players-list .player:hover .player-menu-icon {
+    opacity: 1;
+}
+
+#ra2web-root .player-context-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    min-width: 80px;
+    background: rgba(0, 0, 0, .85);
+    user-select: none;
+}
+
+#ra2web-root .player-context-menu .player-context-menu-item {
+    padding: 4px 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#ra2web-root .player-context-menu .player-context-menu-item:hover {
+    background: red;
 }
 
 #ra2web-root .gamebrowser-wrapper .games .game .game-host {
@@ -1394,7 +1445,7 @@ input[type="range"]:focus {
 
 #ra2web-root .opts .slider-item,
 #ra2web-root .opts .item {
-    margin: 5px 0;
+    margin: 15px 0;
 }
 #ra2web-root .opts .item span.label {
     width: 150px;
@@ -2094,13 +2145,13 @@ input[type="range"]:focus {
 }
 
 #ra2web-root .qm-form .qm-top {
-    min-height: 275px;
+    min-height: 285px;
     display: flex;
     justify-content: space-between;
 }
 
 #ra2web-root .qm-form .opts {
-    flex-grow: 1;
+    width: 400px;
     margin-top: 9px;
     margin-right: 10px;
     border: 1px red solid;
@@ -2173,7 +2224,8 @@ input[type="range"]:focus {
 }
 
 #ra2web-root .qm-form fieldset.qm-profile {
-    width: 170px;
+    width: 190px;
+    box-sizing: border-box;
     margin-inline: 0;
 }
 
@@ -2259,13 +2311,60 @@ input[type="range"]:focus {
     margin: 15px 0 8px 0;
 }
 
+#ra2web-root .qm-form .party-info {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 0;
+}
+
+#ra2web-root .qm-form .party-members {
+    color: yellow;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+#ra2web-root .qm-form .party-status {
+    color: yellow;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#ra2web-root .qm-form .leave-party-button {
+    width: 126px;
+    height: 25px;
+    border: none;
+    outline: none;
+    background-image: var(--res-mnbttn);
+    background-position: 0 0;
+    display: block;
+    margin-top: 4px;
+    color: yellow;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#ra2web-root .qm-form .leave-party-button:hover:not(:disabled) {
+    background-position: -126px 0;
+}
+
+#ra2web-root .qm-form .leave-party-button:active:not(:disabled) {
+    background-position: -252px 0;
+}
+
+#ra2web-root .qm-form .leave-party-button:disabled {
+    color: black;
+}
+
 #ra2web-root .qm-form .qm-profile .info {
     vertical-align: top;
     margin-left: 3px;
 }
 
 #ra2web-root .qm-form .qm-bottom {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     overflow-y: auto;
@@ -2273,10 +2372,9 @@ input[type="range"]:focus {
 }
 
 #ra2web-root .qm-form .qm-bottom .chat-wrapper {
+    width: 400px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    flex-basis: min-content;
 }
 
 #ra2web-root .qm-form .qm-bottom .chat-wrapper .messages {
@@ -2395,6 +2493,10 @@ input[type="range"]:focus {
 
 #ra2web-root .ladder table tr.selected {
     background-color: red;
+}
+
+#ra2web-root .ladder table tr.selected a {
+    color: black;
 }
 
 #ra2web-root .ladder table tr.disabled {
